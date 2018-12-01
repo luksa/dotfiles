@@ -1,0 +1,55 @@
+
+# `v` with no arguments opens the current directory in Vim, otherwise opens the
+# given location
+v() {
+	if [ $# -eq 0 ]; then
+		vim .
+	else
+		vim "$@"
+	fi
+}
+
+# `o` with no arguments opens the current directory, otherwise opens the given
+# location
+o() {
+	if [ $# -eq 0 ]; then
+		xdg-open .	> /dev/null 2>&1
+	else
+		xdg-open "$@" > /dev/null 2>&1
+	fi
+}
+
+
+
+# `rpi` runs given command on all nodes of the rpi cluster
+rpi() {
+  if [ $# -lt 2 ]; then
+    echo "Usage: rpi <node> <cmd>"
+    echo "       where <node> is either all or master or the node index (1,2,3,...,7)"
+    echo
+    echo "Examples: rpi all sudo poweroff"
+    echo "          rpi master hostname -f"
+    echo "          rpi 1 systemctl restart kubelet"
+    echo
+    exit 1
+  fi
+
+  node=$1
+  args=${@:2}
+  sshopts="-t"
+
+  if [ "$node" == "all" ]; then
+    echo "master:" ; ssh $sshopts luksa@master.rpi $args ; echo
+    for i in `seq 1 7`; do echo "node$i:" ; ssh $sshopts luksa@node$i.rpi $args ; echo ; done
+  elif [ "$node" == "master" ] || [ "$node" == "0" ]; then
+    ssh $sshopts luksa@master.rpi $args
+  else
+    ssh $sshopts luksa@node$node.rpi $args
+  fi
+}
+
+
+
+
+
+
