@@ -23,6 +23,8 @@ alias sc="cd ~/projects/go/src/github.com/kubernetes-incubator/service-catalog"
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
+# Enable aliases to be watched
+alias watch='watch '
 
 # IP addresses
 alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
