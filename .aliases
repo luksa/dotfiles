@@ -1,8 +1,8 @@
 #!/bin/bash
 
-
+alias loop=loop
 alias g=git
-
+alias d=docker
 alias k=kubectl
 alias kcd='kubectl config set-context $(kubectl config current-context) --namespace '
 alias kshell='kubectl run -it shell --rm --image giantswarm/tiny-tools --restart Never -- sh'
@@ -31,4 +31,17 @@ alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="sudo ifconfig | grep -Eo 'inet (addr:)?([0-9]*\\.){3}[0-9]*' | grep -Eo '([0-9]*\\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias ips="sudo ifconfig -a | grep -o 'inet6\\? \\(addr:\\)\\?\\s\\?\\(\\(\\([0-9]\\+\\.\\)\\{3\\}[0-9]\\+\\)\\|[a-fA-F0-9:]\\+\\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
+# Use bat instead of cat
+alias cat="bat -p --paging=never"
+
+# Use color in diffs
+alias diff="diff --color=always"
+
+# k get po -o yaml | yaml
+alias yaml="bat -l yaml --paging=never"
+
+# extract pid from docker inspect
+# Usage:
+# docker inspect mycontainer | pid
+alias pid="jq '.[].State.Pid'"
 

@@ -1,18 +1,20 @@
 #!/bin/sh
 
 export PATH=$PATH:/opt/openshift
+export PATH=$PATH:/home/luksa/kubectl-plugins
 
 export PATH=/home/luksa/projects/jboss/go/src/k8s.io/kubernetes/third_party/etcd:${PATH}
 
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
 export PATH
 
+export PATH=$PATH:/home/luksa/.krew/bin
+
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 
 export GOPATH=$HOME/projects/go
-PATH=$PATH:$GOPATH/bin
-export PATH
+export PATH=$PATH:$GOPATH/bin:$GOPATH/out/linux_amd64/release
 
 
 

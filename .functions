@@ -48,8 +48,12 @@ rpi() {
   fi
 }
 
-
-
+retry() {
+until $@ 
+do
+  sleep 1
+done
+}
 
 
 
