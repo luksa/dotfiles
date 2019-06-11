@@ -35,7 +35,7 @@ alias ips="sudo ifconfig -a | grep -o 'inet6\\? \\(addr:\\)\\?\\s\\?\\(\\(\\([0-
 alias cat="bat -p --paging=never"
 
 # Use color in diffs
-alias diff="diff --color=always"
+alias diff="diff --color=always --side-by-side"
 
 # k get po -o yaml | yaml
 alias yaml="bat -l yaml --paging=never"
